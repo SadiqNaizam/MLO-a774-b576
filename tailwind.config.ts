@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
 	darkMode: ["class"],
@@ -22,8 +23,10 @@ export default {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
+				// IMPORTANT: Tailwind 'background' and 'foreground' here are for the overall page.
+        // CSS variables '--background' and '--foreground' are for components (card, popover, etc.)
+				background: '#007BFF', // PRD colorPalette.background (Page background)
+				foreground: '#212529', // PRD colorPalette.primaryText (Default page text)
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -52,22 +55,21 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+        // Explicit PRD color names for utility class usage if needed
+        'prd-surface': '#FFFFFF', // PRD colorPalette.surface
+        'prd-primary-text': '#212529', // PRD colorPalette.primaryText
+        'prd-secondary-text': '#878A99', // PRD colorPalette.secondaryText
+        'prd-accent-blue': '#007BFF', // PRD colorPalette.accentBlue
 			},
 			borderRadius: {
+        // These use the CSS variable '--radius' which is set to 0.375rem (rounded-md)
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+      fontFamily: {
+        sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+      },
 			keyframes: {
 				'accordion-down': {
 					from: {
